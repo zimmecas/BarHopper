@@ -34,6 +34,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".settings"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gvsu.cis.zimmecas.barhopper.MainActivity" />
+        </activity>
+        <activity
+            android:name=".BodyProfile"
+            android:label="@string/title_activity_body_profile"
+            android:parentActivityName=".settings"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gvsu.cis.zimmecas.barhopper.settings" />
+        </activity>
     </application>
 
 </manifest>
