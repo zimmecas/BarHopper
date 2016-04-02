@@ -9,11 +9,14 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button map, route, settings, bac;
+    static AppInfo info;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        info = new AppInfo();
         map = (Button) findViewById(R.id.mapButton);
         route = (Button) findViewById(R.id.routesButton);
         settings = (Button) findViewById(R.id.settingsButton);
@@ -23,6 +26,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         settings.setOnClickListener(this);
         bac.setOnClickListener(this);
     }
+
+    public static void setGender(Gender g) {
+        info.setGender(g);
+    }
+
+    public static void setWeight(int w) {
+        info.setWeight(w);
+    }
+
+    public static Gender getGender() {
+        return info.getGender();
+    }
+
+    public static int getWeight() {
+        return info.getWeight();
+    }
+
+    public static int getDrinks() {
+        return info.getDrinks();
+    }
+
+    public static void addDrink() {
+        info.addDrink();
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -37,7 +65,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(start);
         }
         else if (v==bac) {
-
+            Intent start = new Intent(this, BACCalculator.class);
+            startActivity(start);
         }
     }
 }

@@ -19,10 +19,27 @@ public class settings extends AppCompatActivity implements View.OnClickListener 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Intent input = getIntent();
         bodyProfile = (TextView) findViewById(R.id.bodyProfileView);
         bodyProfile.setOnClickListener(this);
     }
 
+    public static void setGender(Gender g) {
+        MainActivity.setGender(g);
+    }
+
+    public static void setWeight(int w) {
+        MainActivity.setWeight(w);
+    }
+
+    public static Gender getGender() {
+        return MainActivity.getGender();
+    }
+
+    public static int getWeight() {
+        return MainActivity.getWeight();
+    }
+    
     @Override
     public void onClick(View v) {
         if (v==bodyProfile) {

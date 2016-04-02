@@ -36,6 +36,22 @@ public class BodyProfile extends AppCompatActivity implements View.OnClickListen
         cancel.setOnClickListener(this);
     }
 
+    public void setGender(Gender g) {
+        settings.setGender(g);
+    }
+
+    public void setWeight(int w) {
+        settings.setWeight(w);
+    }
+
+    public Gender getGender() {
+        return settings.getGender();
+    }
+
+    public int getWeight() {
+        return settings.getWeight();
+    }
+
     @Override
     public void onClick(View v) {
         if (v==submit) {
@@ -53,12 +69,12 @@ public class BodyProfile extends AppCompatActivity implements View.OnClickListen
                         .show();
             } else {
                 if (gender.getCheckedRadioButtonId() == R.id.Male) {
-                    /*TODO: Complete this
-                    save weight and gender data*/
+                    setGender(Gender.Male);
+                    setWeight(Integer.parseInt(w));
                     finish();
                 } else if (gender.getCheckedRadioButtonId() == R.id.Female) {
-                    /*TODO: Complete this
-                    save weight and gender data*/
+                    setGender(Gender.Female);
+                    setWeight(Integer.parseInt(w));
                     finish();
                 } else {
                     new AlertDialog.Builder(this)
