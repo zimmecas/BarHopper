@@ -12,4 +12,11 @@
     tools:context="edu.gvsu.cis.zimmecas.barhopper.settings"
     tools:showIn="@layout/activity_settings">
 
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="Body Profile"
+        android:id="@+id/bodyProfileView"
+        android:textSize="45dp" />
+
 </RelativeLayout>

@@ -45,13 +45,13 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Map"
-                    android:id="@+id/button" />
+                    android:id="@+id/mapButton" />
 
                 <Button
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Routes"
-                    android:id="@+id/button2" />
+                    android:id="@+id/routesButton" />
 
             </LinearLayout>
 
@@ -66,13 +66,13 @@
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="Settings"
-                    android:id="@+id/button3" />
+                    android:id="@+id/settingsButton" />
 
                 <Button
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="BAC Calculator"
-                    android:id="@+id/button4" />
+                    android:id="@+id/bacButton" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
