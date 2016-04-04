@@ -1,8 +1,8 @@
 package edu.gvsu.cis.zimmecas.barhopper;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+//import android.support.design.widget.FloatingActionButton;
+//import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class BACCalculator extends AppCompatActivity implements View.OnClickListener {
 
     TextView summary;
-    ImageButton drink;
+    ImageButton drink, wineDrink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,8 @@ public class BACCalculator extends AppCompatActivity implements View.OnClickList
         summary = (TextView) findViewById(R.id.Summary);
         drink = (ImageButton) findViewById(R.id.Drink);
         drink.setOnClickListener(this);
+        wineDrink = (ImageButton) findViewById(R.id.DWine) ;
+        wineDrink.setOnClickListener(this);
 
         update();
     }
