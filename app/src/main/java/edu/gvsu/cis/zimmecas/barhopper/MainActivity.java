@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v==map) {
-
+            Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.mapsScreen.class);
+            startActivity(start);
         }
         else if (v==route) {
 
