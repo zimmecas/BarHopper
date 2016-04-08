@@ -12,12 +12,14 @@ import android.widget.TextView;
 public class settings extends AppCompatActivity implements View.OnClickListener {
 
     TextView bodyProfile;
+    Toolbar myToolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
 
         Intent input = getIntent();
         bodyProfile = (TextView) findViewById(R.id.bodyProfileView);
