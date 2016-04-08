@@ -7,4 +7,6 @@
     <string name="title_activity_baccalculator">BAC Calculator</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps_screen">mapsScreen</string>
+    <string name="optionToolbar">Options</string>
+    <string name="home">Home</string>
 </resources>
