@@ -9,87 +9,54 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="edu.gvsu.cis.zimmecas.barhopper.BodyProfile"
-    tools:showIn="@layout/activity_body_profile"
-    android:background="#08468d"
-    android:gravity="center">
+    tools:context="edu.gvsu.cis.zimmecas.barhopper.setHome"
+    tools:showIn="@layout/activity_set_home"
+    android:gravity="center"
+    android:background="#08468d">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:paddingBottom="25dp">
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="BODY PROFILE"
-            android:id="@+id/textView3"
-            android:gravity="center"
+            android:text="Set Home\nAddress"
+            android:id="@+id/textView4"
             android:textColor="#FFFFFF"
             android:textSize="32dp"
+            android:gravity="center_horizontal"
             android:textStyle="bold" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:padding="20dp">
-
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="20dp"
-                android:id="@+id/Gender">
-
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Male"
-                    android:id="@+id/Male"
-                    android:textColor="#FFFFFF"
-                    android:padding="10dp"
-                    android:textSize="20dp" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Female"
-                    android:id="@+id/Female"
-                    android:textColor="#FFFFFF"
-                    android:padding="10dp"
-                    android:textSize="20dp" />
-            </RadioGroup>
+            android:gravity="center">
 
             <LinearLayout
                 android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp">
+                android:gravity="center">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Weight"
-                    android:id="@+id/textView2"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20dp" />
+                    android:text="Address:"
+                    android:id="@+id/addressTextView"
+                    android:textColor="#FFFFFF" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
+                    android:inputType="textPostalAddress"
                     android:ems="10"
-                    android:id="@+id/Weight"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20dp" />
-
+                    android:id="@+id/addressEditText"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
@@ -97,21 +64,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:padding="20dp">
+                android:padding="10dp">
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cancel"
-                    android:id="@+id/Cancel"
-                    android:padding="20dp" />
+                    android:id="@+id/cancelButton"
+                    android:padding="10dp" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Save"
-                    android:id="@+id/Save"
-                    android:padding="20dp" />
+                    android:id="@+id/saveButton"
+                    android:padding="10dp" />
             </LinearLayout>
 
         </LinearLayout>

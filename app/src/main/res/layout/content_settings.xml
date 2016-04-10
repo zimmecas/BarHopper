@@ -12,11 +12,49 @@
     tools:context="edu.gvsu.cis.zimmecas.barhopper.settings"
     tools:showIn="@layout/activity_settings">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:text="Body Profile"
-        android:id="@+id/bodyProfileView"
-        android:textSize="45dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Body Profile"
+            android:id="@+id/bodyProfileView"
+            android:textSize="45dp"
+            android:padding="10dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/setHomeLinearLayout">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/setHomeImageView"
+                android:src="@drawable/home" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Set Home"
+                android:id="@+id/setHomeView"
+                android:textSize="45dp"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Info Summary"
+            android:id="@+id/infoSummaryView"
+            android:textSize="45dp"
+            android:padding="10dp" />
+
+    </LinearLayout>
 
 </RelativeLayout>

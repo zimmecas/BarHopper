@@ -93,6 +93,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.gvsu.cis.zimmecas.barhopper.ItemListActivity" />
         </activity>
+        <activity
+            android:name=".setHome"
+            android:label="@string/title_activity_set_home"
+            android:parentActivityName=".settings"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gvsu.cis.zimmecas.barhopper.settings" />
+        </activity>
+        <activity
+            android:name=".viewInfo"
+            android:label="@string/title_activity_view_info"
+            android:parentActivityName=".settings"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gvsu.cis.zimmecas.barhopper.settings" />
+        </activity>
     </application>
 
 </manifest>

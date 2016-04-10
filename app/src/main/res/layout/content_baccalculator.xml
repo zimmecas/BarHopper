@@ -20,47 +20,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageButton
-                android:layout_width="160dp"
-                android:layout_height="220dp"
-           android:layout_weight="1"
+            <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                 android:id="@+id/Drink"
 
-                android:src="@drawable/icon" />
+                    android:src="@drawable/combined"
+                android:padding="10dp" />
 
-            <ImageButton
-                android:layout_width="160dp"
-                android:layout_height="220dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:id="@+id/DWine"
-                android:src="@drawable/wineglass" />
-
-
-
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:layout_width="160dp"
-                android:layout_height="190dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:id="@+id/DSHot"
-                android:src="@drawable/shot" />
-            <ImageButton
-                android:layout_width="160dp"
-                android:layout_height="190dp"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:id="@+id/DWisky"
-                android:src="@drawable/whisky" />
-        </LinearLayout>
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,4 +38,5 @@
             android:textStyle="bold"
             android:textSize="18dp" />
     </LinearLayout>
+
 </RelativeLayout>
