@@ -1,6 +1,8 @@
 package edu.gvsu.cis.zimmecas.barhopper;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +12,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Button map, route, settings, bac;
     static AppInfo info;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         route.setOnClickListener(this);
         settings.setOnClickListener(this);
         bac.setOnClickListener(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if (prefs.contains("gender")) {
+            if (prefs.getInt("gender",0)==0) setGender(Gender.Male);
+            else setGender(Gender.Female);
+            setWeight(prefs.getInt("weight",0));
+            setAddress(prefs.getString("address", ""));
+            setDrinks(prefs.getInt("drinks",0));
+            setStartTime(prefs.getLong("startTime",0));
+        }
     }
 
     public static void setGender(Gender g) {
@@ -51,6 +63,53 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         info.addDrink();
     }
 
+    public static void setDrinks(int drinks) {
+        info.setDrinks(drinks);
+    }
+
+    public static void setAddress(String a) {
+        info.setAddress(a);
+    }
+
+    public static String getAddress() {
+        return info.getAddress();
+    }
+
+    public static void setStartTime(long startTime) {
+        info.setStartTime(startTime);
+    }
+
+    public static long getStartTime() {
+        return info.getStartTime();
+    }
+
+    public static void reset() {
+        info.reset();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        prefsEditor.putInt("gender", getGender().ordinal());
+        prefsEditor.putInt("weight", getWeight());
+        prefsEditor.putString("address", getAddress());
+        prefsEditor.putInt("drinks", getDrinks());
+        prefsEditor.putLong("startTime",getStartTime());
+        prefsEditor.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        prefsEditor.putInt("gender", getGender().ordinal());
+        prefsEditor.putInt("weight", getWeight());
+        prefsEditor.putString("address", getAddress());
+        prefsEditor.putInt("drinks", getDrinks());
+        prefsEditor.putLong("startTime",getStartTime());
+        prefsEditor.commit();
+    }
 
     @Override
     public void onClick(View v) {

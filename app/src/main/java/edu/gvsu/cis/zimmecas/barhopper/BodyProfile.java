@@ -34,6 +34,8 @@ public class BodyProfile extends AppCompatActivity implements View.OnClickListen
         cancel = (Button) findViewById(R.id.Cancel);
         submit.setOnClickListener(this);
         cancel.setOnClickListener(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void setGender(Gender g) {

@@ -22,6 +22,8 @@ import edu.gvsu.cis.zimmecas.barhopper.dummy.DummyContent;
 
 import java.util.List;
 
+import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
+
 /**
  * An activity representing a list of Items. This activity
  * has different presentations for handset and tablet-size devices. On
