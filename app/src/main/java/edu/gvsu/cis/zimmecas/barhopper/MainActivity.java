@@ -118,7 +118,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(start);
         }
         else if (v==route) {
-
+            Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.ItemDetailActivity.class);
+            startActivity(start);
         }
         else if (v==settings) {
             Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.settings.class);
