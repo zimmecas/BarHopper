@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import edu.gvsu.cis.zimmecas.barhopper.mapActivities.mapsScreen;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button map, route, settings, bac;
@@ -114,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v==map) {
-            Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.mapsScreen.class);
+            Intent start = new Intent(this, mapsScreen.class);
             startActivity(start);
         }
         else if (v==route) {

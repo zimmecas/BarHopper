@@ -15,9 +15,7 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <meta-data
-        android:name="com.google.android.maps.v2.API_KEY"
-        android:value="AIzaSyBafrh-q3ZKBi_Dpdw4ZitU9Dl_zofFXFQ" />
+
 
     <application
         android:allowBackup="true"
@@ -41,8 +39,8 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/. 
         -->
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyBafrh-q3ZKBi_Dpdw4ZitU9Dl_zofFXFQ" />
 
         <activity
             android:name=".settings"
@@ -72,7 +70,7 @@
                 android:value="edu.gvsu.cis.zimmecas.barhopper.MainActivity" />
         </activity>
         <activity
-            android:name=".mapsScreen"
+            android:name=".mapActivities.mapsScreen"
             android:label="@string/title_activity_maps_screen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
