@@ -1,9 +1,11 @@
 package edu.gvsu.cis.zimmecas.barhopper;
 
+import java.io.Serializable;
+
 /**
  * Created by Casey on 4/19/2016.
  */
-public class Bar {
+public class Bar implements Serializable{
     private String href;
     private String name;
     private String address;

@@ -4,6 +4,7 @@ import android.location.Address;
 import android.provider.Settings;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,6 +17,7 @@ public class AppInfo  {
     String address;
     long startTime;
     float BAC;
+    ArrayList<Bar> bars;
 
     public AppInfo() {
         gender = Gender.Male;
@@ -86,5 +88,11 @@ public class AppInfo  {
         BAC = 0;
         startTime = new Date().getTime();
     }
+
+    public void setBars(ArrayList<Bar> arr) {
+        bars = arr;
+    }
+
+
 
 }

@@ -13,6 +13,7 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -41,13 +42,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bac.setOnClickListener(this);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.contains("gender")) {
-            if (prefs.getInt("gender",0)==0) setGender(Gender.Male);
+            if (prefs.getInt("gender", 0) == 0) setGender(Gender.Male);
             else setGender(Gender.Female);
-            setWeight(prefs.getInt("weight",0));
+            setWeight(prefs.getInt("weight", 0));
             setAddress(prefs.getString("address", ""));
-            setDrinks(prefs.getInt("drinks",0));
-            setStartTime(prefs.getLong("startTime",0));
+            setDrinks(prefs.getInt("drinks", 0));
+            setStartTime(prefs.getLong("startTime", 0));
         }
+
 
         String page1 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/1";
         String page2 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/2";
@@ -60,8 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String page9 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/9";
         String page10 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/10";
 
-        new GetBarsTask().execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
-
+        new GetBarsTask(MainActivity.this).execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
     }
     public static void setGender(Gender g) {
         info.setGender(g);
@@ -109,6 +110,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static void reset() {
         info.reset();
+    }
+
+    public static void setBars(ArrayList<Bar> arr) {
+        info.setBars(arr);
     }
 
     @Override
