@@ -71,6 +71,7 @@ public class getBarsTask extends AsyncTask<String, Void, ArrayList<Bar>> {
     @Override
     protected void onPreExecute(){
         super.onPreExecute();
+        barArr = new ArrayList<>();
         pdia.setMessage("Loading Bars...");
         pdia.show();
     }
