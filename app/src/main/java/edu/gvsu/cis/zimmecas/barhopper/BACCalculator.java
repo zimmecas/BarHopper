@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class BACCalculator extends AppCompatActivity implements View.OnClickList
     ImageButton drink;
     float BAC;
     Timer timer;
+    Button reset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class BACCalculator extends AppCompatActivity implements View.OnClickList
         summary = (TextView) findViewById(R.id.Summary);
         drink = (ImageButton) findViewById(R.id.Drink);
         drink.setOnClickListener(this);
+        reset = (Button) findViewById(R.id.resetButton);
+        reset.setOnClickListener(this);
 
         update();
 /*
@@ -101,7 +105,13 @@ public class BACCalculator extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        MainActivity.addDrink();
-        update();
+        if (v==drink) {
+            MainActivity.addDrink();
+            update();
+        }
+        else if (v==reset) {
+            MainActivity.reset();
+            update();
+        }
     }
 }
