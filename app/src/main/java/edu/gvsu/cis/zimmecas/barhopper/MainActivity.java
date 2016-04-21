@@ -8,14 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.File;
-import java.io.IOException;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 import edu.gvsu.cis.zimmecas.barhopper.mapActivities.mapsScreen;
@@ -62,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String page9 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/9";
         String page10 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/10";
 
-        new GetBarsTask(MainActivity.this).execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
+        new GetBarsTaskTemp(MainActivity.this).execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
     }
     public static void setGender(Gender g) {
         info.setGender(g);
