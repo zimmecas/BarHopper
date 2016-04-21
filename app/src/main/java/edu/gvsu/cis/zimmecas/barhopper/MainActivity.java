@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button map, route, settings, bac;
     static AppInfo info;
     SharedPreferences prefs;
+    static boolean firstRun = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,19 +43,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             setStartTime(prefs.getLong("startTime", 0));
         }
 
+        if (firstRun) {
+            String page1 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/1";
+            String page2 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/2";
+            String page3 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/3";
+            String page4 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/4";
+            String page5 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/5";
+            String page6 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/6";
+            String page7 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/7";
+            String page8 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/8";
+            String page9 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/9";
+            String page10 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/10";
 
-        String page1 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/1";
-        String page2 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/2";
-        String page3 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/3";
-        String page4 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/4";
-        String page5 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/5";
-        String page6 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/6";
-        String page7 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/7";
-        String page8 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/8";
-        String page9 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/9";
-        String page10 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/10";
-
-        new getBarsTask(MainActivity.this).execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
+            new getBarsTask(MainActivity.this).execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
+            firstRun = false;
+        }
     }
     public static void setGender(Gender g) {
         info.setGender(g);
