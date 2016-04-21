@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String page9 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/9";
         String page10 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/10";
 
-        new GetBarsTaskTemp(MainActivity.this).execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
+        new GetBarsTask(MainActivity.this).execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
     }
     public static void setGender(Gender g) {
         info.setGender(g);
