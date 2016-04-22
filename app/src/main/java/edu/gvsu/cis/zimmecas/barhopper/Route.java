@@ -1,11 +1,12 @@
 package edu.gvsu.cis.zimmecas.barhopper;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Casey on 4/21/2016.
  */
-public class Route {
+public class Route implements Serializable {
     ArrayList<Bar> route;
     String name;
 

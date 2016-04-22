@@ -27,6 +27,7 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
     GoogleMap myMap;
+    static final LatLng GRAND_RAPIDS = new LatLng(42.9634, 85.6681);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
         }
 
         myMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-
+        myMap.moveCamera(CameraUpdateFactory.newLatLng(GRAND_RAPIDS));
     }
 
 
@@ -73,7 +74,7 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
-            myMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude())));
+
         }
     }
 
