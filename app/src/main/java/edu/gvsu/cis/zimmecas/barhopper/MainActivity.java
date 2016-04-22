@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         prefsEditor.putString("address", getAddress());
         prefsEditor.putInt("drinks", getDrinks());
         prefsEditor.putLong("startTime",getStartTime());
+
         prefsEditor.commit();
     }
 

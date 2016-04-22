@@ -6,6 +6,7 @@ import android.provider.Settings;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by Tim DeVries on 4/1/2016.
@@ -18,6 +19,7 @@ public class AppInfo  {
     long startTime;
     float BAC;
     ArrayList<Bar> bars;
+    ArrayList<Route> routes;
 
     public AppInfo() {
         gender = Gender.Male;
@@ -91,8 +93,19 @@ public class AppInfo  {
 
     public void setBars(ArrayList<Bar> arr) {
         bars = arr;
+        setDefaultRoutes();
     }
 
-
+    public void setDefaultRoutes() {
+        Random rand = new Random();
+        for (int i = 1; i<5; i++) {
+            Route nr = new Route("Route "+i);
+            nr.addBar(bars.get(rand.nextInt(100)));
+            nr.addBar(bars.get(rand.nextInt(100)));
+            nr.addBar(bars.get(rand.nextInt(100)));
+            nr.addBar(bars.get(rand.nextInt(100)));
+            routes.add(nr);
+        }
+    }
 
 }

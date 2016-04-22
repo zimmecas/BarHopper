@@ -37,7 +37,12 @@ public class Route implements Serializable {
     private void moveDown(int index){
         Bar temp;
         if (index == route.size() -1){
-
+            return;
+        }
+        else {
+            temp = route.get(index + 1);
+            route.add(index + 1, route.get(index));
+            route.add(index, temp);
         }
     }
 
