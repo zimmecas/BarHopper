@@ -6,6 +6,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,16 +16,45 @@ import android.widget.TextView;
 public class settings extends AppCompatActivity implements View.OnClickListener {
 
     TextView bodyProfile, infoSummary;
-    Toolbar myToolbar;
     LinearLayout setHomeLayout;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.settings_toolbar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.routeItem:
+                Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.ItemListActivity.class);
+                startActivity(start);
+                return true;
+            case R.id.mapItem:
+                Intent start2 = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.mapActivities.mapsScreen.class);
+                startActivity(start2);
+                return true;
+            case R.id.bacItem:
+                Intent start3 = new Intent(this, BACCalculator.class);
+                startActivity(start3);
+                return true;
+            case R.id.homeItem:
+                Intent start4 = new Intent(this, MainActivity.class);
+                startActivity(start4);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         Intent input = getIntent();
         bodyProfile = (TextView) findViewById(R.id.bodyProfileView);

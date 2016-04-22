@@ -5,16 +5,13 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import edu.gvsu.cis.zimmecas.barhopper.mapActivities.mapsScreen;
@@ -24,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button map, route, settings, bac;
     static AppInfo info;
     SharedPreferences prefs;
+    static boolean firstRun = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,48 +39,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bac.setOnClickListener(this);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.contains("gender")) {
-            if (prefs.getInt("gender",0)==0) setGender(Gender.Male);
+            if (prefs.getInt("gender", 0) == 0) setGender(Gender.Male);
             else setGender(Gender.Female);
-            setWeight(prefs.getInt("weight",0));
+            setWeight(prefs.getInt("weight", 0));
             setAddress(prefs.getString("address", ""));
-            setDrinks(prefs.getInt("drinks",0));
-            setStartTime(prefs.getLong("startTime",0));
+            setDrinks(prefs.getInt("drinks", 0));
+            setStartTime(prefs.getLong("startTime", 0));
+        }
+
+        if (firstRun) {
+            String page1 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/1";
+            String page2 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/2";
+            String page3 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/3";
+            String page4 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/4";
+            String page5 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/5";
+            String page6 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/6";
+            String page7 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/7";
+            String page8 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/8";
+            String page9 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/9";
+            String page10 = "http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/10";
+
+            new getBarsTask(MainActivity.this).execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
+            firstRun = false;
         }
     }
     public static void setGender(Gender g) {
         info.setGender(g);
-    }
-
-
-    private ArrayList<Bar> getBars(){
-        ArrayList<Bar> barArr = new ArrayList<>();
-        Document doc = null;
-
-        for (int i = 1; i < 11; i++) {//runs through variations of URL below, change 11 to # of pages in list.
-            try {
-                doc = Jsoup.connect("http://businessfinder.mlive.com/MI-Grand-Rapids/Bars-and-Pubs/" + i).get();
-                Element innerDetailsSubLeft = doc.select("div.innerDetailsSubLeft").first();//innerDetailsSubLeft is an element containing multiple "resultWrapper" of bars
-                Elements resultWrappers = innerDetailsSubLeft.select("div.resultWrapper");//resultWrappers is an ELEMENTS containing every element of <div class="resultWrapper">...</div> inside of innerDetailsSubLeft
-            } catch (IOException ex){
-                System.out.println("IOException yo");
-                ex.printStackTrace();
-            }
-            /*
-               * Ok so this is how it's going to work.
-               * each element in resultWrappers has bar information, a name, a phone number, an
-               * address, and as well as other things. a nested loop will pull the information from
-               * resultWrappers and turn it into a bar object a final loop, nested after the previous
-               * loop, will place all those bars into an arraylist and return it
-               * I'm sleepy.
-               *
-               * Theres a possibility we could run this the first time the app starts, then only run
-               * it again if bars have been added or removed to/from the list
-               * */
-
-
-        }
-
-        return barArr;
     }
 
     public static void setWeight(int w) {
@@ -129,6 +111,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         info.reset();
     }
 
+    public static void setBars(ArrayList<Bar> arr) {
+        info.setBars(arr);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -138,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         prefsEditor.putString("address", getAddress());
         prefsEditor.putInt("drinks", getDrinks());
         prefsEditor.putLong("startTime",getStartTime());
+
         prefsEditor.commit();
     }
 
