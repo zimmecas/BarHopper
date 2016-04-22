@@ -1,10 +1,14 @@
 package edu.gvsu.cis.zimmecas.barhopper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -23,11 +27,42 @@ public class BACCalculator extends AppCompatActivity implements View.OnClickList
     Button reset;
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.bac_toolbar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.routeItem:
+                Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.ItemListActivity.class);
+                startActivity(start);
+                return true;
+            case R.id.setItem:
+                Intent start2 = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.settings.class);
+                startActivity(start2);
+                return true;
+            case R.id.mapItem:
+                Intent start3 = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.mapActivities.mapsScreen.class);
+                startActivity(start3);
+                return true;
+            case R.id.homeItem:
+                Intent start4 = new Intent(this, MainActivity.class);
+                startActivity(start4);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baccalculator);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
         summary = (TextView) findViewById(R.id.Summary);
         drink = (ImageButton) findViewById(R.id.Drink);

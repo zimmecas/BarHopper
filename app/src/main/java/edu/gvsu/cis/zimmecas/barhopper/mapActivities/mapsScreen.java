@@ -1,6 +1,7 @@
 package edu.gvsu.cis.zimmecas.barhopper.mapActivities;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -21,6 +25,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import edu.gvsu.cis.zimmecas.barhopper.BACCalculator;
+import edu.gvsu.cis.zimmecas.barhopper.MainActivity;
 import edu.gvsu.cis.zimmecas.barhopper.R;
 
 public class mapsScreen extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
@@ -30,10 +36,41 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
     static final LatLng GRAND_RAPIDS = new LatLng(42.9634, 85.6681);
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.routeItem:
+                Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.ItemListActivity.class);
+                startActivity(start);
+                return true;
+            case R.id.setItem:
+                Intent start2 = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.settings.class);
+                startActivity(start2);
+                return true;
+            case R.id.bacItem:
+                Intent start3 = new Intent(this, BACCalculator.class);
+                startActivity(start3);
+                return true;
+            case R.id.homeItem:
+                Intent start4 = new Intent(this, MainActivity.class);
+                startActivity(start4);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_screen);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
         if (mGoogleApiClient == null) {

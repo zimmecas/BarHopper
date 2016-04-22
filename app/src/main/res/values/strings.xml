@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">BarHopper</string>
     <string name="title_activity_main_maps">Map</string>
-    <string name="title_activity_settings">settings</string>
+    <string name="title_activity_settings">Settings</string>
     <string name="title_activity_body_profile">BodyProfile</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_baccalculator">BAC Calculator</string>
@@ -9,8 +9,12 @@
     <string name="title_activity_maps_screen">mapsScreen</string>
     <string name="title_item_list">Item List</string>
     <string name="title_item_detail">Item Detail</string>
-    <string name="optionToolbar">Options</string>
+    <string name="settings">Settings</string>
     <string name="home">Home</string>
     <string name="title_activity_set_home">setHome</string>
     <string name="title_activity_view_info">viewInfo</string>
+    <string name="BAC">BAC Calculator</string>
+    <string name="routes">Routes</string>
+    <string name="map">Map</string>
+
 </resources>

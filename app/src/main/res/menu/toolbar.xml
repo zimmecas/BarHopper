@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeItem"
+        android:icon="@drawable/ic_home_button"
+        android:title="@string/home"
+
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/setItem"
+        android:title="@string/settings"
+
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/bacItem"
+        android:title="@string/BAC"
+
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/routeItem"
+        android:title="Routes"
+
+        app:showAsAction="never"/>
+
+
+
+</menu>
