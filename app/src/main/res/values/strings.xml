@@ -16,5 +16,6 @@
     <string name="BAC">BAC Calculator</string>
     <string name="routes">Routes</string>
     <string name="map">Map</string>
+    <string name="google_app_id">157156925839</string>
 
 </resources>

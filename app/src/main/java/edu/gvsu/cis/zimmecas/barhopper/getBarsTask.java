@@ -25,7 +25,6 @@ public class getBarsTask extends AsyncTask<String, Void, ArrayList<Bar>> {
 
     public getBarsTask(Context context){
         this.context = context;
-        pdia = new ProgressDialog(this.context);
     }
 
     @Override
@@ -72,8 +71,7 @@ public class getBarsTask extends AsyncTask<String, Void, ArrayList<Bar>> {
     protected void onPreExecute(){
         super.onPreExecute();
         barArr = new ArrayList<>();
-        pdia.setMessage("Loading Bars...");
-        pdia.show(context, "", "Loading Bars...", true, false);
+        pdia = ProgressDialog.show(context, "", "Loading Bars...", false, false);
     }
 
     @Override
