@@ -27,6 +27,7 @@ public class AppInfo  {
         drinks = 0;
         BAC = 0;
         startTime = new Date().getTime();
+        routes = new ArrayList<>();
     }
 
     public void setGender(Gender g) {
