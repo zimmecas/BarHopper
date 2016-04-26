@@ -6,6 +6,7 @@ import android.provider.Settings;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -19,7 +20,9 @@ public class AppInfo  {
     long startTime;
     float BAC;
     ArrayList<Bar> bars;
-    ArrayList<Route> routes;
+    List<Route> routes;
+    Route currentRoute;
+
 
     public AppInfo() {
         gender = Gender.Male;
@@ -99,14 +102,28 @@ public class AppInfo  {
 
     public void setDefaultRoutes() {
         Random rand = new Random();
-        for (int i = 1; i<5; i++) {
-            Route nr = new Route("Route "+i);
+        for (int i = 1; i < 5; i++) {
+            Route nr = new Route("Route " + i);
             nr.addBar(bars.get(rand.nextInt(100)));
             nr.addBar(bars.get(rand.nextInt(100)));
             nr.addBar(bars.get(rand.nextInt(100)));
             nr.addBar(bars.get(rand.nextInt(100)));
             routes.add(nr);
         }
+
     }
+
+    public List<Route> getRoutes() {
+        return routes;
+    }
+
+    public void setCurrentRoute(Route r) {
+        currentRoute = r;
+    }
+
+    public Route getCurrentRoute() {
+        return currentRoute;
+    }
+
 
 }
