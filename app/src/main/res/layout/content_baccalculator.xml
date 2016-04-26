@@ -33,7 +33,8 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="55dp">
+            android:paddingTop="55dp"
+            android:gravity="center_horizontal">
 
             <ImageButton
                     android:layout_width="wrap_content"
