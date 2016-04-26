@@ -1,19 +1,19 @@
 package edu.gvsu.cis.zimmecas.barhopper.mapActivities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -21,11 +21,10 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import edu.gvsu.cis.zimmecas.barhopper.BACCalculator;
+import edu.gvsu.cis.zimmecas.barhopper.Bar;
 import edu.gvsu.cis.zimmecas.barhopper.MainActivity;
 import edu.gvsu.cis.zimmecas.barhopper.R;
 
@@ -124,4 +123,5 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
     public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
+
 }
