@@ -32,12 +32,12 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:layout_height="match_parent"
         android:baselineAligned="false"
         android:layout_alignParentBottom="false"
         android:layout_alignWithParentIfMissing="false"
-        android:layout_centerVertical="true">
+        android:layout_centerVertical="true"
+        android:paddingTop="55dp">
 
         <TextView
             android:layout_width="fill_parent"
