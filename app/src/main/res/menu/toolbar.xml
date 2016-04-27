@@ -9,6 +9,13 @@
         app:showAsAction="ifRoom"/>
 
     <item
+        android:id="@+id/switchItem"
+        android:icon="@drawable/ic_switch"
+        android:title="@string/switch_views"
+
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/setItem"
         android:title="@string/settings"
 
@@ -22,7 +29,7 @@
 
     <item
         android:id="@+id/routeItem"
-        android:title="Routes"
+        android:title="@string/routes"
 
         app:showAsAction="never"/>
 
