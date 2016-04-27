@@ -20,7 +20,7 @@ public class AppInfo  {
     long startTime;
     float BAC;
     ArrayList<Bar> bars;
-    List<Route> routes;
+    ArrayList<Route> routes;
     Route currentRoute;
 
 
@@ -102,18 +102,19 @@ public class AppInfo  {
 
     public void setDefaultRoutes() {
         Random rand = new Random();
-        for (int i = 1; i < 5; i++) {
+        int r;
+        for (int i = 1; i < 26; i++) {
             Route nr = new Route("Route " + i);
-            nr.addBar(bars.get(rand.nextInt(100)));
-            nr.addBar(bars.get(rand.nextInt(100)));
-            nr.addBar(bars.get(rand.nextInt(100)));
-            nr.addBar(bars.get(rand.nextInt(100)));
+            r = rand.nextInt(10)+3;
+            for (int j = 1; j < r; j++) {
+                nr.addBar(bars.get(rand.nextInt(100)));
+            }
             routes.add(nr);
         }
 
     }
 
-    public List<Route> getRoutes() {
+    public ArrayList<Route> getRoutes() {
         return routes;
     }
 

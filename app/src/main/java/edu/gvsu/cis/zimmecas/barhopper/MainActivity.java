@@ -115,6 +115,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         info.setBars(arr);
     }
 
+    public static ArrayList<Route> getRoutes() {
+        return info.getRoutes();
+    }
+
     @Override
     protected void onStop() {
         super.onStop();

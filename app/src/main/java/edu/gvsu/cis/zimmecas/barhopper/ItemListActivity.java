@@ -2,6 +2,7 @@ package edu.gvsu.cis.zimmecas.barhopper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -111,15 +113,15 @@ public class ItemListActivity extends AppCompatActivity {
 //    }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(MainActivity.getRoutes()));
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<Route> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<Route> items) {
             mValues = items;
         }
 
@@ -132,42 +134,65 @@ public class ItemListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            if (position<getItemCount()-1) {
+                holder.mItem = mValues.get(position);
+                holder.mIdView.setText(mValues.get(position).route.size() + "\nBars");
+                holder.mIdView.setTextSize(14);
+                holder.mIdView.setTypeface(null, Typeface.NORMAL);
+                holder.mIdView.setPadding(5,5,5,5);
+                holder.mContentView.setText(mValues.get(position).name);
+                holder.mContentView.setTextSize(25);
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putString(ItemDetailFragment.ARG_ITEM_ID, holder.mItem.id);
-                        ItemDetailFragment fragment = new ItemDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.item_detail_container, fragment)
-                                .commit();
-                    } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, ItemDetailActivity.class);
-                        intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (mTwoPane) {
+                            Bundle arguments = new Bundle();
+                            arguments.putInt("index", MainActivity.getRoutes().indexOf(holder.mItem));
+                            ItemDetailFragment fragment = new ItemDetailFragment();
+                            fragment.setArguments(arguments);
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.item_detail_container, fragment)
+                                    .commit();
+                        } else {
+                            Context context = v.getContext();
+                            Intent intent = new Intent(context, ItemDetailActivity.class);
+                            intent.putExtra("index", MainActivity.getRoutes().indexOf(holder.mItem));
 
-                        context.startActivity(intent);
+                            context.startActivity(intent);
+                        }
                     }
-                }
-            });
+                });
+            }
+            else {
+                //holder.mItem = mValues.get(position);
+                holder.mIdView.setText("+");
+                holder.mIdView.setTextSize(35);
+                holder.mIdView.setTypeface(null, Typeface.BOLD);
+                holder.mIdView.setPadding(10,0,10,10);
+
+                holder.mContentView.setText("Create new route");
+                holder.mContentView.setTextSize(25);
+
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //TODO: open createRoute Activity
+                    }
+                });
+            }
         }
 
         @Override
         public int getItemCount() {
-            return mValues.size();
+            return mValues.size()+1;
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public Route mItem;
 
             public ViewHolder(View view) {
                 super(view);
