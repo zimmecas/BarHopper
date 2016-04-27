@@ -67,7 +67,7 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps_screen);
+        setContentView(R.layout.content_maps_screen);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
