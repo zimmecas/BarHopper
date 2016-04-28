@@ -23,8 +23,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -128,6 +128,24 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView.BarListActivity" />
+        </activity>
+        <activity
+            android:name=".AddBar.BarListActivity"
+            android:label="@string/title_bar_list"
+            android:parentActivityName=".barsRecyclerView.BarListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView.BarListActivity" />
+        </activity>
+        <activity
+            android:name=".AddBar.BarDetailActivity"
+            android:label="@string/title_bar_detail"
+            android:parentActivityName=".AddBar.BarListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gvsu.cis.zimmecas.barhopper.AddBar.BarListActivity" />
         </activity>
     </application>
 

@@ -1,9 +1,9 @@
-package edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView;
+package edu.gvsu.cis.zimmecas.barhopper.AddBar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -24,8 +24,8 @@ import edu.gvsu.cis.zimmecas.barhopper.Bar;
 import edu.gvsu.cis.zimmecas.barhopper.MainActivity;
 import edu.gvsu.cis.zimmecas.barhopper.R;
 
+import edu.gvsu.cis.zimmecas.barhopper.AddBar.dummy.DummyContent;
 import edu.gvsu.cis.zimmecas.barhopper.Route;
-import edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView.dummy.DummyContent;
 
 import java.util.List;
 
@@ -46,8 +46,8 @@ public class BarListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-    Route mRoute;
-    View recyclerView;
+    Route route;
+    Activity context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,29 +57,19 @@ public class BarListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
+        toolbar.setBackgroundColor(Color.BLUE);
 
-        toolbar.setBackgroundColor(Color.parseColor("black"));
-
-        recyclerView = findViewById(R.id.bar_list);
-        mRoute = MainActivity.getRoutes().get(getIntent().getIntExtra("index", 0));
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setImageResource(R.drawable.route_start);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity.setRoute(mRoute);
-                goToMap(view);
-            }
-        });
         // Show the Up button in the action bar.
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        View recyclerView = findViewById(R.id.bar_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
+
+        route = MainActivity.getRoutes().get(getIntent().getIntExtra("index", 0));
 
         if (findViewById(R.id.bar_detail_container) != null) {
             // The detail container view will be present only in the
@@ -107,14 +97,8 @@ public class BarListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void goToMap(View v){
-        Intent start3 = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.mapActivities.mapsScreen.class);
-        startActivity(start3);
-        finish();
-    }
-
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(mRoute.getRoute()));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(MainActivity.getBars()));
     }
 
     public class SimpleItemRecyclerViewAdapter
@@ -135,21 +119,24 @@ public class BarListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, final int position) {
-            if (position<getItemCount()-1) {
-                holder.mItem = mValues.get(position);
-                holder.mIdView.setText(position + 1 + "");
-                holder.mContentView.setText(mValues.get(position).getName());
+            holder.mItem = mValues.get(position);
+            holder.mIdView.setText(position+"");
+            holder.mContentView.setText(mValues.get(position).getName());
 
-                holder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, BarDetailActivity.class);
-                        intent.putExtra("index", MainActivity.getBars().indexOf(holder.mItem));
-                        context.startActivity(intent);
+            holder.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    route.addBar(MainActivity.getBars().get(position));
+
+                    Intent intent = new Intent(context, edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView.BarListActivity.class);
+                    intent.putExtra("index", MainActivity.getRoutes().indexOf(route));
+                    context.startActivity(intent);
+                    finish();
+
+                    //navigateUpFromSameTask(context);
                     /*if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(BarDetailFragment.ARG_ITEM_ID, holder.mItem.getName());
+                        arguments.putString(BarDetailFragment.ARG_ITEM_ID, holder.mItem.id);
                         BarDetailFragment fragment = new BarDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -158,37 +145,17 @@ public class BarListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, BarDetailActivity.class);
-                        intent.putExtra(BarDetailFragment.ARG_ITEM_ID, holder.mItem.getName());
+                        intent.putExtra(BarDetailFragment.ARG_ITEM_ID, holder.mItem.id);
 
                         context.startActivity(intent);
                     }*/
-                    }
-                });
-            }
-            else {
-                //holder.mItem = mValues.get(position);
-                holder.mIdView.setText("+");
-                //holder.mIdView.setTextSize(35);
-                holder.mIdView.setTypeface(null, Typeface.BOLD);
-
-                holder.mContentView.setText("Add bar");
-                //holder.mContentView.setTextSize(25);
-
-                holder.mView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, edu.gvsu.cis.zimmecas.barhopper.AddBar.BarListActivity.class);
-                        intent.putExtra("index", MainActivity.getRoutes().indexOf(mRoute));
-                        context.startActivity(intent);
-                    }
-                });
-            }
+                }
+            });
         }
 
         @Override
         public int getItemCount() {
-            return mValues.size()+1;
+            return mValues.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {

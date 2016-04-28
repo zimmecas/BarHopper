@@ -126,5 +126,9 @@ public class AppInfo  {
         return currentRoute;
     }
 
+    public void addNewRoute(String s) {
+        routes.add(new Route(s));
+    }
+
 
 }

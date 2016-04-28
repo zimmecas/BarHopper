@@ -1,6 +1,8 @@
 package edu.gvsu.cis.zimmecas.barhopper;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -8,11 +10,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import android.view.MenuItem;
@@ -39,6 +43,7 @@ public class ItemListActivity extends AppCompatActivity {
      */
     private boolean mTwoPane;
     View recyclerView;
+    private String s = "";
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -144,13 +149,13 @@ public class ItemListActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             if (position<getItemCount()-1) {
                 holder.mItem = mValues.get(position);
                 holder.mIdView.setText(mValues.get(position).route.size() + "\nBars");
                 holder.mIdView.setTextSize(14);
                 holder.mIdView.setTypeface(null, Typeface.NORMAL);
-                holder.mIdView.setPadding(5,5,5,5);
+                holder.mIdView.setPadding(5, 5, 5, 5);
                 holder.mContentView.setText(mValues.get(position).name);
                 holder.mContentView.setTextSize(25);
 
@@ -193,6 +198,34 @@ public class ItemListActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         //TODO: open createRoute Activity
+                        final Context context = v.getContext();
+                        final EditText editText = new EditText(context);
+                        editText.setInputType(InputType.TYPE_CLASS_TEXT);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setTitle("Name your route");
+                        builder.setView(editText);
+
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                s = editText.getText().toString();
+                                MainActivity.addNewRoute(s);
+                                Intent intent = new Intent(context, BarListActivity.class);
+                                intent.putExtra("index", position);
+                                context.startActivity(intent);
+
+                            }
+                        });
+                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+
+                        builder.show();
+
+
                     }
                 });
             }

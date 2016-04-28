@@ -173,6 +173,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static void setDefaultRoutes() { info.setDefaultRoutes(); }
 
+    public static void addNewRoute(String s) {
+        info.addNewRoute(s);
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
