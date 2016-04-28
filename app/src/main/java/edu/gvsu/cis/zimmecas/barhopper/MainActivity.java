@@ -157,6 +157,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static void setRoute(Route r) {info.setCurrentRoute(r); }
 
+    public static Route getCurrentRoute() {
+        return info.getCurrentRoute();
+    }
+
     @Override
     protected void onStop() {
         super.onStop();
