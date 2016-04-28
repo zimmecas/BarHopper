@@ -69,8 +69,9 @@ public class ItemListActivity extends AppCompatActivity {
                 startActivity(start3);
                 return true;
             case R.id.homeItem:
-                Intent start4 = new Intent(this, MainActivity.class);
-                startActivity(start4);
+                navigateUpFromSameTask(this);
+                //Intent start4 = new Intent(this, MainActivity.class);
+                //startActivity(start4);
                 return true;
         }
         return super.onOptionsItemSelected(item);

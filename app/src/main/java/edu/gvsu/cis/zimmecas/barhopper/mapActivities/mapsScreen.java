@@ -28,6 +28,8 @@ import edu.gvsu.cis.zimmecas.barhopper.Bar;
 import edu.gvsu.cis.zimmecas.barhopper.MainActivity;
 import edu.gvsu.cis.zimmecas.barhopper.R;
 
+import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
+
 public class mapsScreen extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     GoogleApiClient mGoogleApiClient;
     Location mLastLocation;
@@ -57,8 +59,9 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
                 startActivity(start3);
                 return true;
             case R.id.homeItem:
-                Intent start4 = new Intent(this, MainActivity.class);
-                startActivity(start4);
+                navigateUpFromSameTask(this);
+                //Intent start4 = new Intent(this, MainActivity.class);
+                //startActivity(start4);
                 return true;
             case R.id.switchItem:
                 //switchModes();

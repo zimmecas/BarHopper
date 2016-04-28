@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
+
 public class settings extends AppCompatActivity implements View.OnClickListener {
 
     TextView bodyProfile, infoSummary;
@@ -41,8 +43,9 @@ public class settings extends AppCompatActivity implements View.OnClickListener 
                 startActivity(start3);
                 return true;
             case R.id.homeItem:
-                Intent start4 = new Intent(this, MainActivity.class);
-                startActivity(start4);
+                navigateUpFromSameTask(this);
+                //Intent start4 = new Intent(this, MainActivity.class);
+                //startActivity(start4);
                 return true;
         }
         return super.onOptionsItemSelected(item);

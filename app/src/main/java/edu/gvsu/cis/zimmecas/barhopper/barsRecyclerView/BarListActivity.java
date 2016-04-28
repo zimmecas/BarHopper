@@ -18,8 +18,10 @@ import android.widget.TextView;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import edu.gvsu.cis.zimmecas.barhopper.MainActivity;
 import edu.gvsu.cis.zimmecas.barhopper.R;
 
+import edu.gvsu.cis.zimmecas.barhopper.Route;
 import edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView.dummy.DummyContent;
 
 import java.util.List;
@@ -41,6 +43,7 @@ public class BarListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    Route mRoute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,11 +55,12 @@ public class BarListActivity extends AppCompatActivity {
         toolbar.setTitle(getTitle());
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.route_start);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                MainActivity.setRoute(mRoute);
+                goToMap(view);
             }
         });
         // Show the Up button in the action bar.
@@ -93,6 +97,12 @@ public class BarListActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void goToMap(View v){
+        Intent start3 = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.mapActivities.mapsScreen.class);
+        startActivity(start3);
+        finish();
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {

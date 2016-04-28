@@ -28,10 +28,11 @@ public class ItemDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
+        mRoute = MainActivity.getRoutes().get(getIntent().getIntExtra("index", 0));
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         assert fab != null;
-        fab.setImageResource(R.mipmap.route_start);
+        fab.setImageResource(R.drawable.route_start);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
