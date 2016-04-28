@@ -22,5 +22,6 @@
     <string name="switch_views">Switch Views</string>
     <string name="title_bar_list">Bars</string>
     <string name="title_bar_detail">Bar Detail</string>
+    <string name="marker_not_placed">Some bar markers could not be placed</string>
 
 </resources>

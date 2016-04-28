@@ -8,12 +8,12 @@
 
         app:showAsAction="ifRoom"/>
 
-    <item
-        android:id="@+id/switchItem"
-        android:icon="@drawable/ic_switch"
-        android:title="@string/switch_views"
+    <!--<item-->
+        <!--android:id="@+id/switchItem"-->
+        <!--android:icon="@drawable/ic_switch"-->
+        <!--android:title="@string/switch_views"-->
 
-        app:showAsAction="ifRoom"/>
+        <!--app:showAsAction="ifRoom"/>-->
 
     <item
         android:id="@+id/setItem"

@@ -47,6 +47,10 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
     GoogleApiClient mGoogleApiClient;
 
     GoogleMap myMap;
+//    GoogleMap liteMap;
+
+//    SupportMapFragment liteMapFragment;
+    SupportMapFragment mMapFragment;
     boolean liteMode = false;
     LocationManager locationManager;
     
@@ -85,9 +89,9 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
                 Intent start4 = new Intent(this, MainActivity.class);
                 startActivity(start4);
                 return true;
-            case R.id.switchItem:
-                //switchModes();
-                break;
+//            case R.id.switchItem:
+//                switchModes();
+//                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -111,7 +115,6 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
                     .addApi(LocationServices.API)
                     .build();
         }
-        myMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(mapsScreen.this,
@@ -131,23 +134,40 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
                 ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
             }
         }
+        myMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
         myMap.setMyLocationEnabled(true);
-        SupportMapFragment mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mMapFragment.getMapAsync(this);
+
+//        liteMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.liteMap)).getMap();
+//        liteMapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.liteMap));
+//        liteMapFragment.getMapAsync(this);
+//        liteMapFragment.setMenuVisibility(false);
 
         myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(GRAND_RAPIDS, 15));
         myMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
     }
 
     private void populateMap() {
+        Marker currentBarMarker;
+        LatLng latLng;
         if (currentRoute != null){
             for (Bar b : currentRoute.getRoute()) {
-                LatLng latLng = getLocationFromAddress(getApplicationContext(), b.getAddress());
-                Marker currentBarMarker = myMap.addMarker(new MarkerOptions()
-                        .position(latLng)
-                        .draggable(false)
-                        .title(b.getName())
-                        .snippet(b.getAddress() + "/n" + b.getPhoneNumber()));
+                latLng = getLocationFromAddress(getApplicationContext(), b.getAddress());
+                if (latLng != null) {
+                    System.out.println(latLng.latitude + "from populate");
+                    System.out.println(latLng.longitude + "from populate");
+                }
+                try {
+                    currentBarMarker = myMap.addMarker(new MarkerOptions().position(latLng)
+                            .draggable(false)
+                            .title(b.getName())
+                            .snippet(b.getAddress() + "/n" + b.getPhoneNumber()));
+
+                } catch (IllegalArgumentException e){
+                    e.printStackTrace();
+                    Snackbar.make(mLayout, R.string.marker_not_placed, Snackbar.LENGTH_LONG).show();
+                }
             }
         } else {
             return;
@@ -155,7 +175,7 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
     }
 
 
-    public LatLng getLocationFromAddress(Context context,String strAddress) {
+    public static LatLng getLocationFromAddress(Context context,String strAddress) {
 
         Geocoder coder = new Geocoder(context);
         List<Address> address;
@@ -176,17 +196,24 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
 
             ex.printStackTrace();
         }
-
+        if (p1 != null) {
+            System.out.println(p1.latitude + "from gLFA");
+            System.out.print(p1.longitude + "from gLFA");
+        }
         return p1;
     }
 
-    public void switchModes() {
-        if (liteMode == false) {
-            liteMode = true;
-        } else if (liteMode == true) {
-            liteMode = false;
-        }
-    }
+//    public void switchModes() {
+//        if (liteMode == false) {
+//            liteMode = true;
+//            mMapFragment.setMenuVisibility(false);
+//            liteMapFragment.setMenuVisibility(true);
+//        } else if (liteMode == true) {
+//            liteMode = false;
+//            mMapFragment.setMenuVisibility(true);
+//            liteMapFragment.setMenuVisibility(false);
+//        }
+//    }
 
     protected void onStart() {
         mGoogleApiClient.connect();
