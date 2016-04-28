@@ -11,6 +11,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+
+import com.uber.sdk.android.rides.RideParameters;
+import com.uber.sdk.android.rides.RideRequestButton;
+import com.uber.sdk.android.rides.UberSdk;
 
 import java.util.ArrayList;
 
@@ -22,11 +27,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static AppInfo info;
     SharedPreferences prefs;
     static boolean firstRun = true;
+    RideRequestButton requestRide;
+    LinearLayout LLVerticle;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // This is necessary for the SDK to function.
+        UberSdk.initialize(this, "p3aZ1Qu7bFUtxTPteWfISO5_WT6X3YF-");
+        // This is necessary if you'll be using the SDK for implicit grant
+        //UberSdk.setRedirectUri("YOUR_REDIRECT_URI");
+        // This is useful for testing your application in the sandbox environment
+        UberSdk.setSandboxMode(true);
+        // China based apps should specify the region
+        UberSdk.setRegion(UberSdk.Region.WORLD);
+
+        LLVerticle = (LinearLayout) findViewById(R.id.vertLayout);
+        requestRide  = new RideRequestButton(this);
+        LLVerticle.addView(requestRide);
 
         info = new AppInfo();
         map = (Button) findViewById(R.id.mapButton);
@@ -63,6 +85,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             firstRun = false;
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
+
     public static void setGender(Gender g) {
         info.setGender(g);
     }
@@ -117,6 +146,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static ArrayList<Route> getRoutes() {
         return info.getRoutes();
+    }
+
+    public void setUberParams() {
+        RideParameters rideParams = new RideParameters.Builder()
+                .setDropoffLocation(37.795079, -122.4397805, "Home", getAddress())
+                .build();
+        requestRide.setRideParameters(rideParams);
     }
 
     @Override

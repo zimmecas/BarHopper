@@ -9,13 +9,11 @@
     -->
     <!-- Permission -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-
 
     <application
         android:allowBackup="true"
@@ -23,7 +21,8 @@
         android:label="Beer City Bar Hopper"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -109,6 +108,24 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="edu.gvsu.cis.zimmecas.barhopper.settings" />
+        </activity>
+        <activity
+            android:name=".barsRecyclerView.BarListActivity"
+            android:label="@string/title_bar_list"
+            android:parentActivityName=".ItemListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gvsu.cis.zimmecas.barhopper.ItemListActivity" />
+        </activity>
+        <activity
+            android:name=".barsRecyclerView.BarDetailActivity"
+            android:label="@string/title_bar_detail"
+            android:parentActivityName=".barsRecyclerView.BarListActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView.BarListActivity" />
         </activity>
     </application>
 

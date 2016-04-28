@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView.BarListActivity;
 import edu.gvsu.cis.zimmecas.barhopper.dummy.DummyContent;
 
 import java.util.List;
@@ -43,6 +44,7 @@ public class ItemListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    View recyclerView;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -82,9 +84,11 @@ public class ItemListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
-        View recyclerView = findViewById(R.id.item_list);
+        recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        //setupRecyclerView((RecyclerView) recyclerView);
+
+
 
         if (findViewById(R.id.item_detail_container) != null) {
             // The detail container view will be present only in the
@@ -112,6 +116,12 @@ public class ItemListActivity extends AppCompatActivity {
 //        return super.onOptionsItemSelected(item);
 //    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupRecyclerView((RecyclerView) recyclerView);
+    }
+
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(MainActivity.getRoutes()));
     }
@@ -119,7 +129,7 @@ public class ItemListActivity extends AppCompatActivity {
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<Route> mValues;
+        private List<Route> mValues;
 
         public SimpleItemRecyclerViewAdapter(List<Route> items) {
             mValues = items;
@@ -146,7 +156,11 @@ public class ItemListActivity extends AppCompatActivity {
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (mTwoPane) {
+                        Context context = v.getContext();
+                        Intent intent = new Intent(context, BarListActivity.class);
+                        intent.putExtra("index", MainActivity.getRoutes().indexOf(holder.mItem));
+                        context.startActivity(intent);
+                        /*if (mTwoPane) {
                             Bundle arguments = new Bundle();
                             arguments.putInt("index", MainActivity.getRoutes().indexOf(holder.mItem));
                             ItemDetailFragment fragment = new ItemDetailFragment();
@@ -160,7 +174,7 @@ public class ItemListActivity extends AppCompatActivity {
                             intent.putExtra("index", MainActivity.getRoutes().indexOf(holder.mItem));
 
                             context.startActivity(intent);
-                        }
+                        }*/
                     }
                 });
             }

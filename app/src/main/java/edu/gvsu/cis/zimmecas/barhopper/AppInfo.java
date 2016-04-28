@@ -31,6 +31,7 @@ public class AppInfo  {
         BAC = 0;
         startTime = new Date().getTime();
         routes = new ArrayList<>();
+        address = "0 Fulton St. Grand Rapids, MI";
     }
 
     public void setGender(Gender g) {
