@@ -72,6 +72,7 @@
         <activity
             android:name=".mapActivities.mapsScreen"
             android:label="@string/title_activity_maps_screen"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ItemListActivity"
