@@ -60,6 +60,9 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
                 Intent start4 = new Intent(this, MainActivity.class);
                 startActivity(start4);
                 return true;
+            case R.id.switchItem:
+                //switchModes();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
