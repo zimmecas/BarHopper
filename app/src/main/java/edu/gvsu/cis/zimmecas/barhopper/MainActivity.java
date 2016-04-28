@@ -155,6 +155,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestRide.setRideParameters(rideParams);
     }
 
+    public static void setRoute(Route r) {info.setCurrentRoute(r); }
+
     @Override
     protected void onStop() {
         super.onStop();
