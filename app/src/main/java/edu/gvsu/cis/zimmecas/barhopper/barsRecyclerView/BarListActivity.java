@@ -130,7 +130,7 @@ public class BarListActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.mItem = mValues.get(position);
             holder.mIdView.setText(position+1+"");
             holder.mContentView.setText(mValues.get(position).getName());
@@ -138,7 +138,11 @@ public class BarListActivity extends AppCompatActivity {
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mTwoPane) {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, BarDetailActivity.class);
+                    intent.putExtra("index", MainActivity.getBars().indexOf(holder.mItem));
+                    context.startActivity(intent);
+                    /*if (mTwoPane) {
                         Bundle arguments = new Bundle();
                         arguments.putString(BarDetailFragment.ARG_ITEM_ID, holder.mItem.getName());
                         BarDetailFragment fragment = new BarDetailFragment();
@@ -152,7 +156,7 @@ public class BarListActivity extends AppCompatActivity {
                         intent.putExtra(BarDetailFragment.ARG_ITEM_ID, holder.mItem.getName());
 
                         context.startActivity(intent);
-                    }
+                    }*/
                 }
             });
         }
