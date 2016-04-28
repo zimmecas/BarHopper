@@ -1,6 +1,8 @@
 package edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -52,6 +54,9 @@ public class BarDetailFragment extends Fragment {
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
                 appBarLayout.setTitle(mItem.getName());
+                appBarLayout.setCollapsedTitleTextColor(Color.parseColor("blue"));
+                appBarLayout.setExpandedTitleColor(Color.parseColor("blue"));
+                appBarLayout.setBackgroundColor(Color.parseColor("black"));
             }
         }
     }
@@ -63,8 +68,7 @@ public class BarDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.bar_detail)).setText(mItem.getName()+
-                    "\nAddress: "+mItem.getAddress()+
+            ((TextView) rootView.findViewById(R.id.bar_detail)).setText("Address: "+mItem.getAddress()+
             "\nPhone: "+mItem.getPhoneNumber()+
             "\nWebsite: "+mItem.getHref());
         }
