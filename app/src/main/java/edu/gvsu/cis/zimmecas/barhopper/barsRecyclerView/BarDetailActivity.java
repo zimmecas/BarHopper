@@ -30,6 +30,7 @@ public class BarDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setImageResource(R.drawable.ic_action_name);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,8 +66,8 @@ public class BarDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(BarDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(BarDetailFragment.ARG_ITEM_ID));
+            arguments.putInt("index",
+                    getIntent().getIntExtra("index", 0));
             BarDetailFragment fragment = new BarDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

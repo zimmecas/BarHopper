@@ -27,7 +27,9 @@ public class Bar implements Serializable{
     public String getName(){return name;}
     public String getAddress(){return address;}
     public String getPhoneNumber(){return phoneNumber;}
+    public String getHref() {return href;}
     public void setName(String n){name = n;}
     public void setAddress(String a){address = a;}
     public void setPhoneNumber(String pN){phoneNumber = pN;}
+    public void setHref(String s) {href = s;}
 }
