@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LLVerticle = (LinearLayout) findViewById(R.id.vertLayout);
         requestRide  = new RideRequestButton(this);
         LLVerticle.addView(requestRide);
+        requestRide.setText("Ride home with Uber");
 
         info = new AppInfo();
         map = (Button) findViewById(R.id.mapButton);
