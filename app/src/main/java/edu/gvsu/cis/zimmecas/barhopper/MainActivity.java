@@ -189,11 +189,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(start);
         }
         else if (v==route) {
-            Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.ItemListActivity.class);
+            Intent start = new Intent(this, ItemListActivity.class);
             startActivity(start);
         }
         else if (v==settings) {
-            Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.settings.class);
+            Intent start = new Intent(this, settings.class);
             startActivity(start);
         }
         else if (v==bac) {
