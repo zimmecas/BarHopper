@@ -108,11 +108,10 @@ public class AppInfo  {
             Route nr = new Route("Route " + i);
             r = rand.nextInt(10)+3;
             for (int j = 1; j < r; j++) {
-                nr.addBar(bars.get(rand.nextInt(100)));
+                nr.addBar(bars.get(rand.nextInt(bars.size())));
             }
             routes.add(nr);
         }
-
     }
 
     public ArrayList<Route> getRoutes() {

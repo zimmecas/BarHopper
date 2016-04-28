@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     static boolean firstRun = true;
     RideRequestButton requestRide;
     LinearLayout LLVerticle;
+    RideParameters rideParams;
 
 
 
@@ -50,8 +51,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestRide  = new RideRequestButton(this);
         LLVerticle.addView(requestRide);
         requestRide.setText("Ride home with Uber");
+        //rideParams = new RideParameters.Builder().setDropoffLocation()
 
-        info = new AppInfo();
+
         map = (Button) findViewById(R.id.mapButton);
         route = (Button) findViewById(R.id.routesButton);
         settings = (Button) findViewById(R.id.settingsButton);
@@ -60,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         route.setOnClickListener(this);
         settings.setOnClickListener(this);
         bac.setOnClickListener(this);
+
+        info = new AppInfo();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.contains("gender")) {
             if (prefs.getInt("gender", 0) == 0) setGender(Gender.Male);
@@ -85,7 +89,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             new getBarsTask(MainActivity.this).execute(page1, page2, page3, page4, page5, page6, page7, page8, page9, page10);
             firstRun = false;
         }
+        //else setDefaultRoutes();
     }
+
+/*    public double getLat(String address) {
+
+    }*/
 
     @Override
     protected void onResume() {
@@ -160,11 +169,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         requestRide.setRideParameters(rideParams);
     }
 
-    public static void setRoute(Route r) {info.setCurrentRoute(r); }
+    public static void setRoute(Route r) { info.setCurrentRoute(r); }
 
     public static Route getCurrentRoute() {
         return info.getCurrentRoute();
     }
+
+    public static void setDefaultRoutes() { info.setDefaultRoutes(); }
 
     @Override
     protected void onStop() {
