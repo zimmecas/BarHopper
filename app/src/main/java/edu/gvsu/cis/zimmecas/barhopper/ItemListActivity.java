@@ -72,6 +72,12 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onAttachedToWindow() {
+        setupRecyclerView((RecyclerView) recyclerView);
+        super.onAttachedToWindow();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);

@@ -31,7 +31,7 @@ public class settings extends AppCompatActivity implements View.OnClickListener 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.routeItem:
-                Intent start = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.ItemListActivity.class);
+                Intent start = new Intent(this, ItemListActivity.class);
                 startActivity(start);
                 return true;
             case R.id.mapItem:
@@ -43,9 +43,8 @@ public class settings extends AppCompatActivity implements View.OnClickListener 
                 startActivity(start3);
                 return true;
             case R.id.homeItem:
-                navigateUpFromSameTask(this);
-                //Intent start4 = new Intent(this, MainActivity.class);
-                //startActivity(start4);
+                Intent start4 = new Intent(this, MainActivity.class);
+                startActivity(start4);
                 return true;
         }
         return super.onOptionsItemSelected(item);
