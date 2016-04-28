@@ -84,11 +84,11 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
             case R.id.bacItem:
                 Intent start3 = new Intent(this, BACCalculator.class);
                 startActivity(start3);
-                return true;
+                return true;/*
             case R.id.homeItem:
                 Intent start4 = new Intent(this, MainActivity.class);
                 startActivity(start4);
-                return true;
+                return true;*/
 //            case R.id.switchItem:
 //                switchModes();
 //                break;

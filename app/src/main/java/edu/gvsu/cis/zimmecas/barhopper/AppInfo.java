@@ -104,7 +104,7 @@ public class AppInfo  {
     public void setDefaultRoutes() {
         Random rand = new Random();
         int r;
-        for (int i = 1; i < 26; i++) {
+        for (int i = 1; i < 6; i++) {
             Route nr = new Route("Route " + i);
             r = rand.nextInt(10)+3;
             for (int j = 1; j < r; j++) {

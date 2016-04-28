@@ -66,12 +66,12 @@ public class ItemListActivity extends AppCompatActivity {
             case R.id.bacItem:
                 Intent start3 = new Intent(this, BACCalculator.class);
                 startActivity(start3);
-                return true;
+                return true;/*
             case R.id.homeItem:
                 navigateUpFromSameTask(this);
                 //Intent start4 = new Intent(this, MainActivity.class);
                 //startActivity(start4);
-                return true;
+                return true;*/
         }
         return super.onOptionsItemSelected(item);
     }

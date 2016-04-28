@@ -68,13 +68,13 @@
                 android:padding="10dp" />
         </LinearLayout>
 
-        <TextView
+<!--        <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Info Summary"
             android:id="@+id/infoSummaryView"
             android:textSize="45dp"
-            android:padding="10dp" />
+            android:padding="10dp" />-->
 
     </LinearLayout>
 

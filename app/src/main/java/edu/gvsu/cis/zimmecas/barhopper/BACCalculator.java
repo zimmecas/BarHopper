@@ -49,12 +49,12 @@ public class BACCalculator extends AppCompatActivity implements View.OnClickList
             case R.id.mapItem:
                 Intent start3 = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.mapActivities.mapsScreen.class);
                 startActivity(start3);
-                return true;
+                return true;/*
             case R.id.homeItem:
                 navigateUpFromSameTask(this);
                 //Intent start4 = new Intent(this, MainActivity.class);
                 //startActivity(start4);
-                return true;
+                return true;*/
         }
         return super.onOptionsItemSelected(item);
     }

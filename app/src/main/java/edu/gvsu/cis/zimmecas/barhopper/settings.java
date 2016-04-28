@@ -41,11 +41,11 @@ public class settings extends AppCompatActivity implements View.OnClickListener 
             case R.id.bacItem:
                 Intent start3 = new Intent(this, BACCalculator.class);
                 startActivity(start3);
-                return true;
+                return true;/*
             case R.id.homeItem:
                 Intent start4 = new Intent(this, MainActivity.class);
                 startActivity(start4);
-                return true;
+                return true;*/
         }
         return super.onOptionsItemSelected(item);
     }
@@ -63,8 +63,8 @@ public class settings extends AppCompatActivity implements View.OnClickListener 
         bodyProfile.setOnClickListener(this);
         setHomeLayout = (LinearLayout) findViewById(R.id.setHomeLinearLayout);
         setHomeLayout.setOnClickListener(this);
-        infoSummary = (TextView) findViewById(R.id.infoSummaryView);
-        infoSummary.setOnClickListener(this);
+        /*infoSummary = (TextView) findViewById(R.id.infoSummaryView);
+        infoSummary.setOnClickListener(this);*/
     }
 
     public static void setGender(Gender g) {
@@ -100,10 +100,10 @@ public class settings extends AppCompatActivity implements View.OnClickListener 
         else if (v==setHomeLayout) {
             Intent start = new Intent(this, setHome.class);
             startActivity(start);
-        }
+        }/*
         else if (v==infoSummary) {
             Intent start = new Intent(this, viewInfo.class);
             startActivity(start);
-        }
+        }*/
     }
 }
