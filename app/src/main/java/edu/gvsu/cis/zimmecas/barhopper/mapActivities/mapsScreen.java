@@ -1,9 +1,13 @@
 package edu.gvsu.cis.zimmecas.barhopper.mapActivities;
 
 import android.Manifest;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -25,8 +29,15 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.util.List;
 
 import edu.gvsu.cis.zimmecas.barhopper.BACCalculator;
+import edu.gvsu.cis.zimmecas.barhopper.Bar;
 import edu.gvsu.cis.zimmecas.barhopper.MainActivity;
 import edu.gvsu.cis.zimmecas.barhopper.R;
 import edu.gvsu.cis.zimmecas.barhopper.Route;
@@ -91,6 +102,7 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
         setSupportActionBar(toolbar);
 
         currentRoute = MainActivity.getCurrentRoute();
+        //populateMap(); called in onMapReady
 
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -123,8 +135,49 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
         SupportMapFragment mMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mMapFragment.getMapAsync(this);
 
-//        myMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-//        myMap.animateCamera(CameraUpdateFactory.newLatLng(GRAND_RAPIDS));
+        myMap.moveCamera(CameraUpdateFactory.newLatLngZoom(GRAND_RAPIDS, 15));
+        myMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+    }
+
+    private void populateMap() {
+        if (currentRoute != null){
+            for (Bar b : currentRoute.getRoute()) {
+                LatLng latLng = getLocationFromAddress(getApplicationContext(), b.getAddress());
+                Marker currentBarMarker = myMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .draggable(false)
+                        .title(b.getName())
+                        .snippet(b.getAddress() + "/n" + b.getPhoneNumber()));
+            }
+        } else {
+            return;
+        }
+    }
+
+
+    public LatLng getLocationFromAddress(Context context,String strAddress) {
+
+        Geocoder coder = new Geocoder(context);
+        List<Address> address;
+        LatLng p1 = null;
+
+        try {
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+            Address location = address.get(0);
+            location.getLatitude();
+            location.getLongitude();
+
+            p1 = new LatLng(location.getLatitude(), location.getLongitude() );
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+        }
+
+        return p1;
     }
 
     public void switchModes() {
@@ -142,6 +195,7 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
 
     protected void onStop() {
         mGoogleApiClient.disconnect();
+
         super.onStop();
     }
 
@@ -162,7 +216,9 @@ public class mapsScreen extends AppCompatActivity implements GoogleApiClient.Con
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(GRAND_RAPIDS));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(GRAND_RAPIDS, 15));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
+        populateMap();
     }
 
 

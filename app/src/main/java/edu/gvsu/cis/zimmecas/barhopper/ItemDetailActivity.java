@@ -1,15 +1,19 @@
 package edu.gvsu.cis.zimmecas.barhopper;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+
+import edu.gvsu.cis.zimmecas.barhopper.ItemDetailFragment;
+import edu.gvsu.cis.zimmecas.barhopper.ItemListActivity;
+import edu.gvsu.cis.zimmecas.barhopper.MainActivity;
+import edu.gvsu.cis.zimmecas.barhopper.R;
+import edu.gvsu.cis.zimmecas.barhopper.Route;
 
 /**
  * An activity representing a single Item detail screen. This
