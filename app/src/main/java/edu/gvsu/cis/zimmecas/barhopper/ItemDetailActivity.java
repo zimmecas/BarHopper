@@ -19,6 +19,9 @@ import android.view.MenuItem;
  */
 public class ItemDetailActivity extends AppCompatActivity {
 
+
+    private Route mRoute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +35,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                MainActivity.setRoute(mRoute);
+                goToMap(view);
             }
         });
 
@@ -62,7 +66,16 @@ public class ItemDetailActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.item_detail_container, fragment)
                     .commit();
+            mRoute = MainActivity.getRoutes().get(getIntent().getIntExtra("index", 0));
         }
+
+
+    }
+
+    private void goToMap(View v){
+        Intent start3 = new Intent(this, edu.gvsu.cis.zimmecas.barhopper.mapActivities.mapsScreen.class);
+        startActivity(start3);
+        finish();
     }
 
     @Override

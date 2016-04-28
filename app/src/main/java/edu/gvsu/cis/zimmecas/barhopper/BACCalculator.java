@@ -122,7 +122,7 @@ public class BACCalculator extends AppCompatActivity implements View.OnClickList
         if (minutes == 1) {
             s += minutes + " minute";
         }
-        else if (minutes != 1) {
+        else {
             s += minutes + " minutes";
         }
         return s;
