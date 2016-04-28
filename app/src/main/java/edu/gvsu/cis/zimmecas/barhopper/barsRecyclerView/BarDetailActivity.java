@@ -33,8 +33,6 @@ public class BarDetailActivity extends AppCompatActivity implements View.OnClick
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setBackgroundColor(Color.parseColor("black"));
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageResource(R.drawable.ic_action_name);
         fab.setOnClickListener(this);

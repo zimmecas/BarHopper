@@ -2,6 +2,7 @@ package edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +56,8 @@ public class BarListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
+
+        toolbar.setBackgroundColor(Color.parseColor("black"));
 
         recyclerView = findViewById(R.id.bar_list);
         mRoute = MainActivity.getRoutes().get(getIntent().getIntExtra("index", 0));
