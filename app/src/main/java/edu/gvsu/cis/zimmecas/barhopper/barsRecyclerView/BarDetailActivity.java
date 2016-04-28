@@ -1,15 +1,17 @@
 package edu.gvsu.cis.zimmecas.barhopper.barsRecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
+import edu.gvsu.cis.zimmecas.barhopper.MainActivity;
 import edu.gvsu.cis.zimmecas.barhopper.R;
 
 /**
@@ -31,8 +33,16 @@ public class BarDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Go to website", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                //first bar
+                //pub 43
+                String url = "http://www.mlive.com/business/west-michigan/index.ssf/2010/04/owner_of_diversions_and_pub_43.html";
+                String oprnurl = "" + MainActivity.getCurrentRoute();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                //set back to openurl once it works
+                i.setData(Uri.parse(url));
+                startActivity(i);
             }
         });
 
