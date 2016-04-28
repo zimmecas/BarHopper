@@ -10,6 +10,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+
     }
     buildTypes {
         release {
@@ -28,8 +29,8 @@ dependencies {
     compile 'com.android.support:support-v4:23.2.1'
     compile 'com.android.support:recyclerview-v7:23.2.1'
     compile 'org.jsoup:jsoup:1.9.1'
-    compile 'com.squareup.retrofit:retrofit:1.9.0'
-    compile 'com.squareup.okhttp:okhttp:2.7.2'
+    //compile 'com.squareup.retrofit:retrofit:1.9.0'
+    //compile 'com.squareup.okhttp:okhttp:2.7.2'
     compile files('libs/jsoup-1.9.1.jar')
     compile files('src/main/libs/gson-2.6.2.jar')
 }
