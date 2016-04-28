@@ -24,7 +24,7 @@ public class viewInfo extends AppCompatActivity {
         if (settings.getGender()==Gender.Male) gender.setText("Male");
         else gender.setText("Female");
         weight.setText(settings.getWeight()+"");
-        address.setText(settings.getAddress());
+        address.setText(settings.getAddress()+"\nCurrent Route: "+MainActivity.getCurrentRoute().name);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

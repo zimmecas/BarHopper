@@ -17,6 +17,8 @@
     <string name="routes">Routes</string>
     <string name="map">Map</string>
     <string name="google_app_id">157156925839</string>
+    <string name="ok">Ok</string>
+    <string name="permission_location_rationale">BarHopper needs your location to track your route progress.</string>
     <string name="switch_views">Switch Views</string>
     <string name="title_bar_list">Bars</string>
     <string name="title_bar_detail">Bar Detail</string>

@@ -18,6 +18,8 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.support.v4.app.NavUtils.navigateUpFromSameTask;
+
 public class BACCalculator extends AppCompatActivity implements View.OnClickListener {
 
     TextView summary;
@@ -49,8 +51,9 @@ public class BACCalculator extends AppCompatActivity implements View.OnClickList
                 startActivity(start3);
                 return true;
             case R.id.homeItem:
-                Intent start4 = new Intent(this, MainActivity.class);
-                startActivity(start4);
+                navigateUpFromSameTask(this);
+                //Intent start4 = new Intent(this, MainActivity.class);
+                //startActivity(start4);
                 return true;
         }
         return super.onOptionsItemSelected(item);
